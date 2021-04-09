@@ -39,6 +39,6 @@
     ]
   },
   "react-dotenv": {
-    "whitelist": ["API_URL"]
+    "whitelist": ["API_URL","PATH_USERS","PATH_USER","PATH_REPOSITORIES"]
   }
 }
