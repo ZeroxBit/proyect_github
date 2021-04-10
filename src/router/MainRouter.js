@@ -1,7 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Redirect,
+    Route,
+} from "react-router-dom";
 import App from "../App";
-import { NavBar } from "../components/NavBar";
+import NavBar from "../components/navBar/NavBar.js";
 
 export const MainRouter = () => {
     return (
@@ -9,7 +14,7 @@ export const MainRouter = () => {
             <NavBar />
             <Switch>
                 <Route exact path="/" component={App} />
-                <Redirect to="/" />
+                {/* <Redirect to="/" /> */}
             </Switch>
         </Router>
     );

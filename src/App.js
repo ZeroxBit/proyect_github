@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import env from "react-dotenv";
-import { NavBar } from "./components/NavBar";
+import { NavBar } from "./components/navBar/NavBar";
 import { getSearchUsersServices } from "./services/userServices";
 import "./style/style.scss";
 
@@ -27,7 +27,6 @@ function App() {
     console.log("data", data);
     return (
         <>
-            <NavBar />
             <div className="container">
                 <div className="column is-12">
                     <input
