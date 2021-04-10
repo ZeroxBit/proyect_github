@@ -1,0 +1,16 @@
+{
+    "menuItems": [
+        {
+            "name": "Usuarios",
+            "path": "/",
+            "activeClass": "is-active",
+            "exact": true
+        },
+        {
+            "name": "Repositorios",
+            "path": "/repo",
+            "activeClass": "is-active",
+            "exact": false
+        }
+    ]
+}
