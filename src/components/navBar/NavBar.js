@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import useResize from "../../hooks/useResize";
 import Brand from "./sections/Brand";
 import ListItems from "./sections/ListItems";
 
 // Menu!!
 const NavBar = () => {
     const [showMenuMobil, setShowMenuMobil] = useState(false);
-
+    const [, isMobil] = useResize();
     const handleToggleMenuInMobil = () => setShowMenuMobil(!showMenuMobil);
 
     return (
@@ -16,7 +17,7 @@ const NavBar = () => {
         >
             <div className="container">
                 <Brand click={handleToggleMenuInMobil} />
-                <ListItems showMenuMobil={showMenuMobil} />
+                <ListItems showMenuMobil={showMenuMobil} isMobil={isMobil} />
             </div>
         </nav>
     );

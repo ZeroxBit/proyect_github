@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import useResize from "../../../hooks/useResize";
 import { menuItems } from "../config.json";
 
 /**
@@ -8,7 +7,7 @@ import { menuItems } from "../config.json";
  * @param {string} currentClass La clase a ser aplicada
  * @returns regresa un listado de componentes NavLink
  */
-const Items = (currentClass) => {
+const Items = ({ currentClass }) => {
     const handleRenderItems = () => {
         return menuItems.map(({ path, activeClass, name, exact }, i) => {
             return (
@@ -33,9 +32,7 @@ const Items = (currentClass) => {
  * @param {bool} showMenuMobil define si se despliega el menu en mobil
  * @returns El listado de items del menu!!
  */
-const ListItems = ({ showMenuMobil }) => {
-    const [, isMobil] = useResize();
-
+const ListItems = ({ showMenuMobil, isMobil }) => {
     const handleClassListItems = () => {
         const base = "navbar-start ";
         const mobil =
