@@ -1,0 +1,16 @@
+.input-search {
+    &__button {
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        height: 96%;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        padding: 0 16px;
+
+        &:focus:not(:active) {
+            box-shadow: none;
+            border-color: transparent;
+        }
+    }
+}
