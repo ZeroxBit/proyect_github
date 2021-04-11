@@ -2,13 +2,24 @@ import React, { useState } from "react";
 import Card from "../components/card/Card";
 import Hero from "../components/hero/Hero";
 import { getSearchUsersServices } from "../services/userServices";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import InputSearch from "../components/Input/InputSearch";
 
 const Users = () => {
     const [users, setUsers] = useState(null);
+    const [search, setSearch] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = async (e) => {
         const name = e.target.value;
-        getSearchUsersServices(name)
+        setSearch(name);
+    };
+
+    const handleRequest = async () => {
+        console.log("handleKeyPress");
+        setIsLoading(true);
+        await getSearchUsersServices(search)
             .then((result) => {
                 console.log("resultt", result.data);
                 setUsers(result.data);
@@ -16,6 +27,7 @@ const Users = () => {
             .catch((err) => {
                 console.log("errorr", err);
             });
+        setIsLoading(false);
     };
 
     const handlRenderUsers = () => {
@@ -35,10 +47,12 @@ const Users = () => {
                         <div class="hero-body">
                             <p class="title">Buscame en Github</p>
                             <div className="column is-6">
-                                <input
-                                    className="input is-medium"
-                                    placeholder="Ingresa un nombre"
+                                <InputSearch
                                     onChange={handleChange}
+                                    value={search}
+                                    onSubmit={handleRequest}
+                                    isLoading={isLoading}
+                                    placeholder="Ingresa un nombre"
                                 />
                             </div>
                         </div>
