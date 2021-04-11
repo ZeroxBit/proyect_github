@@ -1,0 +1,28 @@
+.hero {
+    background: $color-gray;
+    border-radius: 6px;
+    box-shadow: $box-shadow;
+    margin-right: -0.75rem;
+
+    @include media(desktop) {
+        margin-right: 0;
+    }
+
+    &-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem 0;
+
+        @include media(desktop) {
+            padding: 3rem 1.5rem;
+        }
+
+        & .column {
+            @include media(mobile) {
+                width: 90%;
+            }
+        }
+    }
+}
