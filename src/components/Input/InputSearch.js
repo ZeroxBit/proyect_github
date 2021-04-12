@@ -10,8 +10,8 @@ const InputSearch = ({ onChange, value, onSubmit, isLoading, placeholder }) => {
     };
 
     return (
-        <form class="field" onSubmit={handleSubmit}>
-            <p class="control has-icons-right">
+        <form className="field" onSubmit={handleSubmit}>
+            <p className="control has-icons-right">
                 <input
                     className="input is-medium"
                     placeholder={placeholder}
@@ -20,7 +20,7 @@ const InputSearch = ({ onChange, value, onSubmit, isLoading, placeholder }) => {
                 />
 
                 <button
-                    class={`button input-search__button ${
+                    className={`button input-search__button ${
                         isLoading ? "is-loading" : ""
                     }`}
                 >

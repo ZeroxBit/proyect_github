@@ -5,15 +5,15 @@ import { faBookReader } from "@fortawesome/free-solid-svg-icons";
 
 const BoxRepo = ({ image, fullName, userLogin, description, urlRepo }) => {
     return (
-        <div class="box">
-            <article class="media">
-                <div class="media-left">
-                    <figure class="image is-64x64">
+        <div className="box">
+            <article className="media">
+                <div className="media-left">
+                    <figure className="image is-64x64">
                         <img src={image} alt={fullName} />
                     </figure>
                 </div>
-                <div class="media-content">
-                    <div class="content">
+                <div className="media-content">
+                    <div className="content">
                         <p>
                             <strong>{fullName}</strong>{" "}
                             <small>@{userLogin}</small>
@@ -21,15 +21,15 @@ const BoxRepo = ({ image, fullName, userLogin, description, urlRepo }) => {
                             {description}
                         </p>
                     </div>
-                    <nav class="level is-mobile">
-                        <div class="level-left">
+                    <nav className="level is-mobile">
+                        <div className="level-left">
                             <a
                                 href={urlRepo}
                                 target="_blank"
-                                class="level-item"
+                                className="level-item"
                                 aria-label="reply"
                             >
-                                <span class="icon is-small">
+                                <span className="icon is-small">
                                     <FontAwesomeIcon icon={faBookReader} />
                                 </span>
                             </a>

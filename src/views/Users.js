@@ -11,22 +11,23 @@ const Users = () => {
     const [users, setUsers] = useState(null);
     const [search, setSearch] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [hasError, setHasError] = useState(false);
 
     const handleChange = async (e) => {
         const name = e.target.value;
         setSearch(name);
     };
 
-    const handleRequest = async () => {
+    const handleSubmit = async () => {
         setIsLoading(true);
-        await getSearchUsersServices(search)
-            .then((result) => {
-                console.log("resultt", result.data);
-                setUsers(result.data);
-            })
-            .catch((err) => {
-                console.log("errorr", err);
-            });
+        try {
+            const result = await getSearchUsersServices(search);
+            setUsers(result.data);
+            if (hasError) setHasError(false);
+        } catch (error) {
+            setHasError(true);
+        }
+
         setIsLoading(false);
     };
 
@@ -50,7 +51,7 @@ const Users = () => {
                                 <InputSearch
                                     onChange={handleChange}
                                     value={search}
-                                    onSubmit={handleRequest}
+                                    onSubmit={handleSubmit}
                                     isLoading={isLoading}
                                     placeholder="Ingresa un nombre"
                                 />
