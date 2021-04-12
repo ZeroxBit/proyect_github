@@ -48,7 +48,7 @@ const Repositories = () => {
             const result = await getSearchReposServices(search, pageNumber);
             setRepositories(result.data);
             setIsFirstSearch(false);
-            setHasError(false);
+            if (hasError) setHasError(false);
         } catch (error) {
             setHasError(true);
         }
