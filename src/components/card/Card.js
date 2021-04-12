@@ -6,7 +6,7 @@ const Card = ({ img, text, cardPointer }) => {
         <div className={`card ${cardPointer ? "is-clickable" : ""}`}>
             <div className="card-image">
                 <figure className="image is-4by3">
-                    <img src={img} alt="Placeholder image" />
+                    <img src={img} alt={text} />
                 </figure>
             </div>
             <div className="card-content">

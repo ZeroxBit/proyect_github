@@ -8,7 +8,7 @@
         },
         {
             "name": "Repositorios",
-            "path": "/repo",
+            "path": "/repositorios",
             "activeClass": "is-active",
             "exact": false
         }

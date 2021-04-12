@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import App from "../App";
 import NavBar from "../components/navBar/NavBar.js";
+import Repositories from "../views/Repositories";
 
 export const MainRouter = () => {
     return (
@@ -14,7 +15,9 @@ export const MainRouter = () => {
             <NavBar />
             <Switch>
                 <Route exact path="/" component={App} />
-                {/* <Redirect to="/" /> */}
+                <Route exact path="/repositorios" component={Repositories} />
+
+                <Redirect to="/" />
             </Switch>
         </Router>
     );

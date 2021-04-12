@@ -5,6 +5,7 @@ import { getSearchUsersServices } from "../services/userServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import InputSearch from "../components/Input/InputSearch";
+import Wrapper from "../components/wrapper/Wrapper";
 
 const Users = () => {
     const [users, setUsers] = useState(null);
@@ -17,7 +18,6 @@ const Users = () => {
     };
 
     const handleRequest = async () => {
-        console.log("handleKeyPress");
         setIsLoading(true);
         await getSearchUsersServices(search)
             .then((result) => {
@@ -40,7 +40,7 @@ const Users = () => {
     };
 
     return (
-        <div className="container mt-6">
+        <Wrapper>
             <div className="columns">
                 <div className="column is-12">
                     <Hero>
@@ -60,7 +60,7 @@ const Users = () => {
                 </div>
             </div>
             <div className="columns is-multiline">{handlRenderUsers()}</div>
-        </div>
+        </Wrapper>
     );
 };
 

@@ -2,7 +2,7 @@ import { API } from "./connection";
 import env from "react-dotenv";
 
 /**
- * No necesita recibir parametos
+ * @param {string} name El nombre de usuario a buscar
  * @returns Regresa un listado de usuarios
  */
 export const getSearchUsersServices = async (name) => {
