@@ -11,7 +11,7 @@ import Repositories from "../views/Repositories";
 
 export const MainRouter = () => {
     return (
-        <Router>
+        <Router basename="proyect_github">
             <NavBar />
             <Switch>
                 <Route exact path="/" component={App} />
