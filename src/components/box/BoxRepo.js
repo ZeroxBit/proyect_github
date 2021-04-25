@@ -26,6 +26,7 @@ const BoxRepo = ({ image, fullName, userLogin, description, urlRepo }) => {
                             <a
                                 href={urlRepo}
                                 target="_blank"
+                                rel="noreferrer"
                                 className="level-item"
                                 aria-label="reply"
                             >
@@ -41,6 +42,12 @@ const BoxRepo = ({ image, fullName, userLogin, description, urlRepo }) => {
     );
 };
 
-BoxRepo.propTypes = {};
+BoxRepo.propTypes = {
+    image: PropTypes.string.isRequired,
+    fullName: PropTypes.string.isRequired,
+    userLogin: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    urlRepo: PropTypes.string.isRequired,
+};
 
 export default BoxRepo;

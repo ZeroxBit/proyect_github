@@ -9,13 +9,18 @@ const InputSearch = ({ onChange, value, onSubmit, isLoading, placeholder }) => {
         onSubmit();
     };
 
+    const handleOnChange = (e) => {
+        const { value } = e.target;
+        onChange(value);
+    };
+
     return (
         <form className="field" onSubmit={handleSubmit}>
             <p className="control has-icons-right">
                 <input
                     className="input is-medium"
                     placeholder={placeholder}
-                    onChange={onChange}
+                    onChange={handleOnChange}
                     value={value}
                 />
 

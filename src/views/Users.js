@@ -1,18 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Card from "../components/card/Card";
-import Hero from "../components/hero/Hero";
-import { getSearchUsersServices } from "../services/userServices";
-import InputSearch from "../components/Input/InputSearch";
 import Wrapper from "../components/wrapper/Wrapper";
 import useObserver from "../hooks/useObserver";
+import { getDataAction } from "../actions/RequestDataActions";
+import { RootContext } from "../context/ContextApp";
+import ListCard from "../components/card/ListCard";
 
-const Users = () => {
-    const [users, setUsers] = useState(null);
-    const [search, setSearch] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const [hasError, setHasError] = useState(false);
+const Users = ({ location }) => {
     const [pageNumber, setPageNumber] = useState(1);
-    const [isFirstSearch, setIsFirstSearch] = useState(true);
+    const [hasError, setHasError] = useState(false);
+    const [isFirstRender, setIsFirstRender] = useState(true);
+
+    const { list, setList, search, setSearch, isActivePaginate } = useContext(
+        RootContext
+    );
+
     const refObserver = useRef(null);
     const { isNearScreen } = useObserver({
         distance: "100px",
@@ -20,77 +22,45 @@ const Users = () => {
     });
 
     useEffect(() => {
-        if ((!isLoading, !isFirstSearch)) {
+        setList(null);
+        setSearch("");
+        setIsFirstRender(false);
+    }, []);
+
+    useEffect(() => {
+        if (!!list && isActivePaginate && !isFirstRender) {
             handlePaginate();
         }
+
+        return () => {
+            setPageNumber(1);
+        };
     }, [isNearScreen]);
 
     const handlePaginate = async () => {
-        try {
-            const nextPage = pageNumber + 1;
-            const result = await getSearchUsersServices(search, nextPage);
-            setPageNumber(nextPage);
+        const nextPage = pageNumber + 1;
+        const { error, data } = await getDataAction(
+            search,
+            nextPage,
+            location.pathname
+        );
 
-            setUsers({
-                ...users,
-                items: [...users.items, ...result.data.items],
-            });
-            if (hasError) setHasError(false);
-        } catch (error) {
-            setHasError(true);
-        }
-    };
-
-    const handleChange = async (e) => {
-        const name = e.target.value;
-        setSearch(name);
-    };
-
-    const handleSubmit = async () => {
-        setIsLoading(true);
-        const initialPage = 1;
-        try {
-            const result = await getSearchUsersServices(search, initialPage);
-            setUsers(result.data);
-            setIsFirstSearch(false);
-            setPageNumber(initialPage);
-            if (hasError) setHasError(false);
-        } catch (error) {
-            setHasError(true);
+        if (error) {
+            setHasError(!!error);
+            setList(null);
+            return;
         }
 
-        setIsLoading(false);
-    };
+        setPageNumber(nextPage);
 
-    const handlRenderUsers = () => {
-        if (!users) return null;
-        return users.items.map(({ avatar_url, login }, i) => (
-            <div className="column is-3" key={`${login}-${i}`}>
-                <Card img={avatar_url} text={login} cardPointer />
-            </div>
-        ));
+        setList({
+            ...list,
+            items: [...list.items, ...data.items],
+        });
     };
 
     return (
         <Wrapper>
-            <div className="columns">
-                <div className="column is-12">
-                    <Hero>
-                        <div className="hero-body">
-                            <p className="title">Buscame en Github</p>
-                            <div className="column is-6">
-                                <InputSearch
-                                    onChange={handleChange}
-                                    value={search}
-                                    onSubmit={handleSubmit}
-                                    isLoading={isLoading}
-                                    placeholder="Ingresa un nombre"
-                                />
-                            </div>
-                        </div>
-                    </Hero>
-                </div>
-            </div>
             {hasError && (
                 <div className="columns is-12">
                     <h2 className="title is-2">
@@ -99,7 +69,7 @@ const Users = () => {
                 </div>
             )}
             <div className="columns is-multiline">
-                {handlRenderUsers()}
+                <ListCard list={list} isLoading={isFirstRender} />
                 <div ref={refObserver}></div>
             </div>
         </Wrapper>

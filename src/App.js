@@ -1,9 +1,15 @@
 import React from "react";
+import ContextApp from "./context/ContextApp";
+import MainRouter from "./router/MainRouter";
+
 import "./style/style.scss";
-import Users from "./views/Users";
 
 function App() {
-    return <Users />;
+    return (
+        <ContextApp>
+            <MainRouter />
+        </ContextApp>
+    );
 }
 
 export default App;

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 const useObserver = ({ distance = "100px", externalRef }) => {
     const [isNearScreen, setShow] = useState(false);
-    console.log("useObserver", distance, externalRef);
 
     useEffect(() => {
         if (!externalRef) return;

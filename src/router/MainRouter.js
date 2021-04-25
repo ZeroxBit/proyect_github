@@ -5,16 +5,19 @@ import {
     Redirect,
     Route,
 } from "react-router-dom";
-import App from "../App";
+import MainHero from "../components/hero/MainHero.js";
 import NavBar from "../components/navBar/NavBar.js";
 import Repositories from "../views/Repositories";
+import Users from "../views/Users";
 
-export const MainRouter = () => {
+const MainRouter = () => {
     return (
-        <Router basename="proyect_github">
+        <Router basename="/">
             <NavBar />
+            <MainHero />
+
             <Switch>
-                <Route exact path="/" component={App} />
+                <Route exact path="/" component={Users} />
                 <Route exact path="/repositorios" component={Repositories} />
 
                 <Redirect to="/" />
@@ -22,3 +25,5 @@ export const MainRouter = () => {
         </Router>
     );
 };
+
+export default MainRouter;

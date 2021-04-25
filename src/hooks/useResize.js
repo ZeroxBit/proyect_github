@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // este hook permite saber el tamaño de la pantalla en todo momento!!
 const useResize = (breakpoint = 768) => {
