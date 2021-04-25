@@ -39,7 +39,11 @@ const MainHero = () => {
         }, 400);
     };
 
-    return (
+    const handleIsRender = () => {
+        return location.pathname === "/login";
+    };
+
+    return handleIsRender() ? null : (
         <Wrapper>
             <Hero>
                 <HeroBody title={handleRenderTitle("Busca un")}>
