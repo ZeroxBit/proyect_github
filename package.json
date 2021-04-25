@@ -52,7 +52,8 @@
             "PATH_REPOSITORIES",
             "PATH_SEARCH_USERS",
             "HEADER",
-            "SRC_LOGO"
+            "SRC_LOGO",
+            "PATH_LOGIN"
         ]
     }
 }

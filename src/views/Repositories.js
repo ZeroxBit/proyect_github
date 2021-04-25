@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Wrapper from "../components/wrapper/Wrapper";
-import BoxRepo from "../components/box/BoxRepo";
 import useObserver from "../hooks/useObserver";
 import { RootContext } from "../context/ContextApp";
 import { getDataAction } from "../actions/RequestDataActions";

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router";
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router";
 import useResize from "../../hooks/useResize";
+import { removeTokenServices } from "../../services/authServices";
+import { instanceAxios } from "../../services/connection";
 import Brand from "./sections/Brand";
 import ListItems from "./sections/ListItems";
 
@@ -9,7 +11,27 @@ const NavBar = () => {
     const [showMenuMobil, setShowMenuMobil] = useState(false);
 
     const location = useLocation();
+    const history = useHistory();
     const [, isMobil] = useResize();
+    useEffect(() => {
+        handleCatchExpireToken();
+        return () => {};
+    }, []);
+
+    const handleCatchExpireToken = () => {
+        instanceAxios.interceptors.response.use(
+            (response) => {
+                return response;
+            },
+            (error) => {
+                console.log("errr", error.response);
+                if (error.response.status === 401) {
+                    removeTokenServices();
+                    history.replace("/login");
+                }
+            }
+        );
+    };
 
     const handleToggleMenuInMobil = () => setShowMenuMobil(!showMenuMobil);
 
